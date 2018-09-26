@@ -1,9 +1,12 @@
+
+
 "use strict";
 
 var fs = require('fs-extra');
-var sleep = require('system-sleep');
-var fs1 = require('fs');
+var sleep = require('system-sleep')
 
+var data = []
+for (var i = 0; i < 500; i++) data[i] = i;
 
 function checkarrlength(array) {
 	let count = 0;
@@ -18,7 +21,7 @@ function checkarrlength(array) {
 }
 
 function processarr(arr, name) {
-  if(!name) throw "Name parameter is empty";
+	if (!name) throw "Name parameter is empty";
 	if (!Array.isArray(arr)) {
 		throw "are you sure you are adding an array?";
 	} else {
@@ -27,44 +30,52 @@ function processarr(arr, name) {
 			while (checkarrlength(arr)) {
 				data1.push(arr.splice(0, 10));
 			}
-			console.log("Converted your large array into chunks and saved")
-			if (!fs1.existsSync('./data/' + name + '.json')) {
-				fs.createFile('./data/' + name + '.json', function (err) {})
+			if (!fs.pathExists('./data/' + name + '.json')) {
+				fs.createFile('./data/' + name + '.json')
 			}
-			sleep(1000)
 			var json = {
 				data: data1
 			};
-			fs.writeJson('./data/' + name + '.json', json, function (err) {});
+			fs.writeJson('./data/' + name + '.json', json)
+				.then(() => {
+					console.log("Converted your large array into chunks and saved")
+				})
+				.catch(err => {
+					console.error(err)
+				})
 		} else {
-      console.log("Array saved")
-			if (!fs1.existsSync('./data/' + name + '.json')) {
-				fs.createFile('./data/' + name + '.json', function (err) {})
+			if (!fs.pathExists('./data/' + name + '.json')) {
+				fs.createFile('./data/' + name + '.json')
 			}
-			sleep(1000)
 			var json = {
 				data: arr
 			};
-			fs.writeJson('./data/' + name + '.json', json, function (err) {});
+			fs.writeJson('./data/' + name + '.json', json)
+				.then(() => {
+					console.log('Successfully saved the array')
+				})
+				.catch(err => {
+					console.error(err)
+				})
 		}
 	}
 }
 
 
 function getdata(name) {
-        
-	if (fs1.existsSync('./data/' + name + '.json')) {
-		sleep(1000)
-		var obj = JSON.parse(fs1.readFileSync('./data/' + name + '.json', 'utf8'));
-                console.log(obj.data);
-		return obj.data;
+	sleep(1000) //so that when you use processarr and getdata together, it can wait and grab data after processarr first task finishes
+	if (fs.pathExists('./data/' + name + '.json')) {
+		var obj = fs.readJsonSync('./data/' + name + '.json', {
+			throws: false
+		})
+		console.log(obj.data);
 	} else {
-	 throw "File does not exist"
+		throw "File does not exist"
 	}
 }
 
 
 module.exports = {
-arr: processarr,
-getdata: getdata
+	arr: processarr,
+	getdata: getdata
 }
