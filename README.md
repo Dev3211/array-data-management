@@ -4,7 +4,7 @@ It can manage your data by using an array, it can also save your array data perm
 
 ## Installation
 
-npm install @dev3211/array-data-management
+npm install array-management
 
 npm install fs-extra
 
