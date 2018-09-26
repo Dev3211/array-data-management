@@ -1,6 +1,6 @@
 # array-data-management
 
-It can manage your data by using an array, it can also save your array data permanently in a JSON file and get it.
+It can manage your data by using an array, it can also save your array data permanently in a JSON file and get it. Basically, it acts as a data storage for your arrays. For example, during your script execution you pushed an object to an array but when you refreshed the script, the data vanished this is because array only acts as a temporary data storage and for that matter this script was created where you can save your array data while pushing and get it at the same time.
 
 ## Installation
 
