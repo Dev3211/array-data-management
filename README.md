@@ -56,6 +56,7 @@ You are free to contribute if you experience any bugs, it would be appreciated f
 ## TO-DO
 
 1. Give options to choose different data storages instead of just using JSON.
-2. Switch to async/await or find a way to remove those sleep functions.
+2. Use promises for writing = complate
+3. Switch to async/await
 
 
