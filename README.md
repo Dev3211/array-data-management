@@ -50,3 +50,5 @@ You are free to contribute if you experience any bugs, it would be appreciated f
 
 
 6. Can process up larger/smaller arrays in a short-span of time along with file creation
+
+7. Handles your data correctly and does not mess it up
