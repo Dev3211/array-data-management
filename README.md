@@ -15,6 +15,7 @@ npm install system-sleep
 var grab = require('@dev3211/array-data-management');
 
 var processarray = grab.arr
+
 var getarray = grab.getdata
 
 var array = ['hey', 'one', 'two', 'three']; //small array
