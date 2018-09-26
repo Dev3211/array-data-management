@@ -12,6 +12,7 @@ npm install system-sleep
 
 ## Usage
 
+```
 var grab = require('array-management');
 
 var processarray = grab.arr
@@ -25,6 +26,7 @@ processarray(array, 'well');
 var test = getarray('well');
 
 console.log(test[0]) //hey
+```
 
 ## Tests
 
