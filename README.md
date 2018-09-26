@@ -12,7 +12,7 @@ npm install system-sleep
 
 ## Usage
 
-var grab = require('array-data-management');
+var grab = require('array-management');
 
 var processarray = grab.arr
 
