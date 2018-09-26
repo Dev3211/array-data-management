@@ -64,6 +64,7 @@ function getdata(name) {
 			throws: false
 		})
 		console.log(obj.data);
+		return obj.data;
 	} else {
 		throw "File does not exist"
 	}
