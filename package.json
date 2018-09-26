@@ -1,0 +1,33 @@
+{
+  "name": "array-management",
+  "version": "0.1.2",
+  "description": "Manages data using array",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dev3211/array-data-management.git"
+  },
+  "keywords": [
+    "data",
+    "management",
+    "data",
+    "array"
+  ],
+  "author": "Dev <devsarma321@gmail.com> (https://github.com/Dev3211/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Dev3211/array-data-management/issues"
+  },
+  "homepage": "https://github.com/Dev3211/array-data-management#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0"
+  },
+  "dependencies": {
+    "fs-extra": "^7.0.0",
+    "system-sleep": "^1.3.6"
+  }
+}
