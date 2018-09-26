@@ -1,12 +1,7 @@
-
-
 "use strict";
 
 var fs = require('fs-extra');
 var sleep = require('system-sleep')
-
-var data = []
-for (var i = 0; i < 500; i++) data[i] = i;
 
 function checkarrlength(array) {
 	let count = 0;
