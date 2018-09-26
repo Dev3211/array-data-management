@@ -52,3 +52,10 @@ You are free to contribute if you experience any bugs, it would be appreciated f
 6. Can process up larger/smaller arrays in a short-span of time along with file creation
 
 7. Handles your data correctly and does not mess it up
+
+## TO-DO
+
+1. Give options to choose different data storages instead of just using JSON.
+2. Switch to async/await or find a way to remove those sleep functions.
+
+
