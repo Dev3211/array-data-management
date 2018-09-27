@@ -57,6 +57,6 @@ You are free to contribute if you experience any bugs, it would be appreciated f
 
 1. Give options to choose different data storages instead of just using JSON.
 2. Use promises for writing = complete
-3. Switch to async/await
+3. Switch to async/await = complete
 
 
