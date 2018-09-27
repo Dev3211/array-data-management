@@ -3,10 +3,11 @@
 var fs = require('fs-extra');
 var sleep = require('system-sleep')
 
-function checkarrlength(array) {
+
+async function checkarrlength(array) {
 	let count = 0;
 	if (!Array.isArray(array)) {
-		throw "are you sure you are adding an array?";
+		throw new Error("are you sure you are adding an array?");
 	} else {
 		for (var i = 0, len = array.length; i < len; i++) {
 			count++;
@@ -15,58 +16,66 @@ function checkarrlength(array) {
 	}
 }
 
-function processarr(arr, name) {
-	if (!name) throw "Name parameter is empty";
+async function processarr(arr, name) {
+	if (!name) throw new Error("Name parameter is empty");
 	if (!Array.isArray(arr)) {
-		throw "are you sure you are adding an array?";
+		throw new Error("are you sure you are adding an array?");
 	} else {
 		if (checkarrlength(arr) >= 100) {
 			var data1 = [];
 			while (checkarrlength(arr)) {
 				data1.push(arr.splice(0, 10));
 			}
-			if (!fs.pathExists('./data/' + name + '.json')) {
-				fs.createFile('./data/' + name + '.json')
+			const exists = await fs.pathExists('./data/' + name + '.json');
+			if (!exists) {
+				await fs.createFile('./data/' + name + '.json').then(() => {
+					console.log('created file')
+				}).catch(err => {
+					console.error(err)
+				});
 			}
-			var json = {
+			const json = {
 				data: data1
 			};
-			fs.writeJson('./data/' + name + '.json', json)
-				.then(() => {
-					console.log("Converted your large array into chunks and saved")
-				})
-				.catch(err => {
-					console.error(err)
-				})
+			await fs.writeJson('./data/' + name + '.json', json).then(() => {
+				console.log("Converted your large array into chunks and saved")
+			}).catch(err => {
+				console.error(err)
+			});
 		} else {
-			if (!fs.pathExists('./data/' + name + '.json')) {
-				fs.createFile('./data/' + name + '.json')
+			const exists = await fs.pathExists('./data/' + name + '.json');
+			if (!exists) {
+				await fs.createFile('./data/' + name + '.json').then(() => {
+					console.log('created file')
+				}).catch(err => {
+					console.error(err)
+				});
 			}
-			var json = {
+			const json = {
 				data: arr
 			};
-			fs.writeJson('./data/' + name + '.json', json)
-				.then(() => {
-					console.log('Successfully saved the array')
-				})
-				.catch(err => {
-					console.error(err)
-				})
+			await fs.writeJson('./data/' + name + '.json', json).then(() => {
+				console.log('Successfully saved the array')
+			}).catch(err => {
+				console.error(err)
+			});
 		}
 	}
 }
 
 
-function getdata(name) {
-	sleep(1000) //so that when you use processarr and getdata together, it can wait and grab data after processarr first task finishes
-	if (fs.pathExists('./data/' + name + '.json')) {
-		var obj = fs.readJsonSync('./data/' + name + '.json', {
-			throws: false
-		})
-		console.log(obj.data);
-		return obj.data;
+async function getdata(name) {
+	sleep(1000) //so that when you use processarr and getdata together, it can wait and grab data after processarr finishes
+	const exists = await fs.pathExists('./data/' + name + '.json');
+	if (exists) {
+		const obj = await fs.readJson('./data/' + name + '.json', { throws: false }).then(data => {
+			console.log(data.data);
+			return data.data;
+		}).catch(err => {
+			console.error(err)
+		});
 	} else {
-		throw "File does not exist"
+		throw new Error("File does not exist")
 	}
 }
 
