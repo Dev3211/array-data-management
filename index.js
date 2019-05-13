@@ -28,7 +28,7 @@ async function processarr(arr, name) {
 			}
 			const exists = await fs.pathExists('./data/' + name + '.json');
 			if (!exists) {
-				await fs.createFile('./data/' + name + '.json').then(() => {
+				fs.createFile('./data/' + name + '.json').then(() => {
 					console.log('created file')
 				}).catch(err => {
 					console.error(err)
@@ -37,7 +37,7 @@ async function processarr(arr, name) {
 			const json = {
 				data: data1
 			};
-			await fs.writeJson('./data/' + name + '.json', json).then(() => {
+			fs.writeJson('./data/' + name + '.json', json).then(() => {
 				console.log("Converted your large array into chunks and saved")
 			}).catch(err => {
 				console.error(err)
@@ -45,7 +45,7 @@ async function processarr(arr, name) {
 		} else {
 			const exists = await fs.pathExists('./data/' + name + '.json');
 			if (!exists) {
-				await fs.createFile('./data/' + name + '.json').then(() => {
+				fs.createFile('./data/' + name + '.json').then(() => {
 					console.log('created file')
 				}).catch(err => {
 					console.error(err)
@@ -54,7 +54,7 @@ async function processarr(arr, name) {
 			const json = {
 				data: arr
 			};
-			await fs.writeJson('./data/' + name + '.json', json).then(() => {
+			fs.writeJson('./data/' + name + '.json', json).then(() => {
 				console.log('Successfully saved the array')
 			}).catch(err => {
 				console.error(err)
@@ -68,7 +68,7 @@ async function getdata(name) {
 	sleep(1000) //so that when you use processarr and getdata together, it can wait and grab data after processarr finishes
 	const exists = await fs.pathExists('./data/' + name + '.json');
 	if (exists) {
-		const obj = await fs.readJson('./data/' + name + '.json', { throws: false }).then(data => {
+		const obj = fs.readJson('./data/' + name + '.json', { throws: false }).then(data => {
 			console.log(data.data);
 			return data.data;
 		}).catch(err => {
