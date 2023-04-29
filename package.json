@@ -24,7 +24,7 @@
   "homepage": "https://github.com/Dev3211/array-data-management#readme",
   "devDependencies": {
     "chai": "^4.1.2",
-    "mocha": "^5.2.0"
+    "mocha": "^10.2.0"
   },
   "dependencies": {
     "fs-extra": "^7.0.0",
